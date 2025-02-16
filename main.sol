@@ -12,15 +12,18 @@ pragma solidity ^0.8.14;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Capped.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract CannaCoinPaper is ERC20, ERC20Burnable, ERC20Capped {
-    uint256 public constant TOTAL_SUPPLY = 1_000_000_000_420 * 10 ** 18; // 1 Trillion 420 tokens with 18 decimals
+contract CannaCoinPaper is ERC20, ERC20Burnable, ERC20Capped, Ownable {
+    uint256 public constant TOTAL_SUPPLY = 1_000_000_000_420 * 10 ** 18;
+    address public immutable initialRecipient = 0x8114BeC86C8F56c1014f590E05cD7826054EcBdE;
 
-    constructor(address initialRecipient)
+    constructor()
         ERC20("Cannacoin Paper", "PAPER")
         ERC20Capped(TOTAL_SUPPLY)
     {
         _mint(initialRecipient, TOTAL_SUPPLY);
+        _transferOwnership(address(0));
     }
 
     function _burn(address account, uint256 amount)
@@ -28,5 +31,9 @@ contract CannaCoinPaper is ERC20, ERC20Burnable, ERC20Capped {
         override(ERC20Burnable, ERC20)
     {
         super._burn(account, amount);
+    }
+
+    function renounceOwnership() public virtual override onlyOwner {
+        super.renounceOwnership();
     }
 }
