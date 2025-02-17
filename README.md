@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # CannaCoin Paper Smart Contract
 
 CannaCoin Paper (PAPER) is an affordable ERC20 token built on Avalanche, featuring a gentle bonding curve mechanism and automated liquidity provision through Uniswap V2. With an extremely low initial price point of 0.00001 AVAX, it's designed for broad accessibility while maintaining price stability through advanced tokenomics.
@@ -90,7 +89,7 @@ Check and manage the locked mining reserve.
 
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/cannacoin-paper.git
+git clone https://github.com/grasshaussoftware/cannacoin-paper.git
 ```
 
 2. Install dependencies
